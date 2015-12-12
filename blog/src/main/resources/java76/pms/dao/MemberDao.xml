@@ -5,16 +5,15 @@
 
 <mapper namespace="java76.pms.dao.MemberDao">
 	<sql id="select_inc">
-		select name, email, tel, cid, photo
+		select name, email, flag, no
 	</sql>
 	
 	<select id="selectList" resultType="member" parameterType="map">
 		<include refid="select_inc"/> 
-		from student
+		from member
 		order by
 		<choose>
       <when test="keyword == 'email'"> email </when>
-      <when test="keyword == 'tel'"> tel </when>
       <otherwise> name </otherwise>
     </choose>
     <choose>
@@ -25,32 +24,29 @@
 	</select>
 
 	<insert id="insert" parameterType="member">
-		insert into student(name,email,tel,cid,photo,pwd)
-		values(#{name},#{email},#{tel},#{cid},#{photo},sha1(#{password}))
+		insert into member(name,email,pwd)
+		values(#{name},#{email},sha1(#{password}))
 	</insert>
 
 	<delete id="delete" parameterType="string">
-		delete from student where email=#{value}
+		delete from member where email=#{value}
 	</delete>
 
 	<update id="update" parameterType="member">
-		update student set
+		update member set
 		name=#{name},
-		tel=#{tel},
-		cid=#{cid},
-		photo=#{photo}
 		where email=#{email}
 	</update>
 	
 	<select id="selectOne" resultType="member" parameterType="string">
 		<include refid="select_inc"/>
-		from student
+		from member
 		where email=#{email}
 	</select>
 	
 	<select id="login" resultType="member" parameterType="map">
 		<include refid="select_inc"/>
-		from student
+		from member
 		where email=#{email} and pwd=sha1(#{password})
 	</select>
 </mapper>
