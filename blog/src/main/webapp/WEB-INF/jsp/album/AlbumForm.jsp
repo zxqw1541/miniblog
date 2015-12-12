@@ -18,7 +18,7 @@
 </tr>
 <tr>
   <th>내용</th>
-  <td><textarea rows='10' name='content' cols='60'
+  <td><textarea rows='10' name='comment' cols='60'
        placeholder="내용을 입력하세요."></textarea></td>
 </tr>
 <tr>

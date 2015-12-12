@@ -31,8 +31,8 @@
 </tr>
 <tr>
   <th>내용</th>
-  <td><textarea rows='10' name='content' 
-      cols='60'>${album.content}</textarea></td>
+  <td><textarea rows='10' name='comment' 
+      cols='60'>${album.comment}</textarea></td>
 </tr>
 <tr>
   <th>조회수</th>
@@ -55,7 +55,7 @@
 </table>
 <p>
 <button name='update' type='submit' class='button1'>변경</button>
-<a id='aDelete' href='delete.do?no=${album.no}' class='button2' onclick='deletealbum()'>삭제</a>
+<a id='aDelete' href='delete.do?no=${album.no}&mno=${album.mno}' class='button2' onclick='deletealbum()'>삭제</a>
 </p>
 </form>
 </c:if>

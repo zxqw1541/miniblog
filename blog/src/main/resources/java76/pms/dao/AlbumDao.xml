@@ -6,23 +6,24 @@
 <mapper namespace="java76.pms.dao.AlbumDao">
 
   <resultMap type="album" id="albumMap">
-    <id 		column="bno" 		property="no"/>
+    <id 		column="ano" 		    property="no"/>
     <result column="cre_dt" 		property="createdDate"/>
-    <result column="afile" 		property="attachFile"/>
+    <result column="thumnail" 		  property="attachFile"/>
   </resultMap>
 
   <select id="selectList" resultMap="albumMap" parameterType="map">
     select 
-      bno,
+      ano,
       title,
       views,
-      cre_dt 
-    from board
+      cre_dt,
+      thumnail
+    from album
     order by 
     <choose>
       <when test="keyword == 'title'">title </when>
       <when test="keyword == 'views'">views </when>
-      <otherwise>bno </otherwise>
+      <otherwise>ano </otherwise>
     </choose>
     <choose>
       <when test="align == 'asc'">asc</when>
@@ -32,34 +33,37 @@
   </select>
   
   <insert id="insert" parameterType="album">
-    insert into board(title,content,pwd,cre_dt,afile) 
-    values(#{title},#{content},#{password},now(),#{attachFile})
+    insert into album(title,comment,site,thumnail,mno,cre_dt) 
+    values(#{title},#{comment},#{site},#{attachFile},#{mno},now())
   </insert>
   
   <delete id="delete" parameterType="map">
-    delete from board 
-  	where bno=#{no} and (pwd is null or pwd=#{password})
+    delete from album 
+  	where ano=#{no} and mno = #{mno}
   </delete>
   
   <update id="update" parameterType="album">
-    update board set 
+    update album set 
       title=#{title},
-      content=#{content},
+      comment=#{comment},
       cre_dt=now(),
-  	  afile=#{attachFile}
-    where bno=#{no} and (pwd is null or pwd=#{password})
+  	  thumnail=#{attachFile},
+  	  site=#{site}
+    where ano=#{no} and mno = #{mno}
   </update>
   
   <select id="selectOne" resultMap="albumMap" parameterType="int">
     select 
-      bno,
+      ano,
       title,
-  	  content,
       views,
       cre_dt,
-  	  afile 
-    from board
-    where bno=#{no}
+      thumnail,
+      comment,
+      site,
+      mno
+    from album
+    where ano=#{no}
   </select>
 </mapper>
 

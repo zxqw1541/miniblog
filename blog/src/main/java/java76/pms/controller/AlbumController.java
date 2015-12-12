@@ -46,12 +46,12 @@ public class AlbumController {
     
     request.setAttribute("albums", albums);
     
-    return "album/albumList";
+    return "album/AlbumList";
   }
   
   @RequestMapping(value="add", method=RequestMethod.GET)
   public String form() {
-    return "album/albumForm";
+    return "album/AlbumForm";
   }
       
   @RequestMapping(value="add", method=RequestMethod.POST)
@@ -76,7 +76,7 @@ public class AlbumController {
     Album album = albumDao.selectOne(no);
     model.addAttribute("album", album);
     
-    return "album/albumDetail";
+    return "album/AlbumDetail";
   }
 
   @RequestMapping(value="update", method=RequestMethod.POST)
@@ -97,7 +97,7 @@ public class AlbumController {
     
     if (albumDao.update(album) <= 0) {
       model.addAttribute("errorCode", "401");
-      return "album/albumAuthError";
+      return "album/AlbumAuthError";
     } 
     
     return "redirect:list.do";
@@ -105,17 +105,19 @@ public class AlbumController {
   
   @RequestMapping("delete")
   public String delete(
-      int no, 
+      int no,
+      int mno,
       String password,
       Model model) throws Exception {
 
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("no", no);
+    paramMap.put("mno", mno);
     paramMap.put("password", password);
     
     if (albumDao.delete(paramMap) <= 0) {
       model.addAttribute("errorCode", "401");
-      return "album/albumAuthError";
+      return "album/AlbumAuthError";
     } 
 
     return "redirect:list.do";
