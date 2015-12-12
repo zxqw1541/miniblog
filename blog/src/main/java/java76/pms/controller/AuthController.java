@@ -21,7 +21,7 @@ public class AuthController {
 
   @RequestMapping(value="login", method=RequestMethod.GET)
   public String loginform() {
-    return "auth/LoginForm";
+    return "redirect:../main/first.do";
   }
       
   @RequestMapping(value="login", method=RequestMethod.POST)
@@ -60,7 +60,7 @@ public class AuthController {
   @RequestMapping("logout")
   public String logout(HttpSession session) {
     session.invalidate();
-    return "redirect:login.do";
+    return "redirect:../main/first.do";
   }
 }
 

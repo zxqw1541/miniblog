@@ -7,9 +7,6 @@ public class Member implements Serializable {
   
   protected String name;
   protected String email;
-  protected String tel;
-  protected String cid; // class ID
-  protected String photo;
   protected String password;
   
   public Member() {}
@@ -17,12 +14,6 @@ public class Member implements Serializable {
   public Member(String name, String email) {
     this.email = email;
     this.name = name;
-  }
-  
-  @Override
-  public String toString() {
-    return this.getName() + "," + this.getEmail() + "," +
-          this.getTel() + "," + this.getCid();
   }
 
   public String getName() {
@@ -41,30 +32,6 @@ public class Member implements Serializable {
     this.email = email;
   }
 
-  public String getTel() {
-    return tel;
-  }
-
-  public void setTel(String tel) {
-    this.tel = tel;
-  }
-
-  public String getCid() {
-    return cid;
-  }
-
-  public void setCid(String cid) {
-    this.cid = cid;
-  }
-
-  public String getPhoto() {
-    return photo;
-  }
-
-  public void setPhoto(String photo) {
-    this.photo = photo;
-  }
-
   public String getPassword() {
     return password;
   }
@@ -72,7 +39,13 @@ public class Member implements Serializable {
   public void setPassword(String password) {
     this.password = password;
   }
+
+  @Override
+  public String toString() {
+    return "Member [name=" + name + ", email=" + email + ", password=" + password + "]";
+  }
   
+ 
   
 }
 

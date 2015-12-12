@@ -5,7 +5,7 @@
 <div class="container">
 프로젝트 관리 시스템 -
   <c:if test="${not empty loginUser}">
-  ${loginUser.name}(${loginUser.cid})
+  ${loginUser.name}
   <a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
   </c:if>
   <c:if test="${empty loginUser}">
@@ -36,19 +36,16 @@
 
 <div class="md-modal md-effect-10" id="modal-10">
   <div class="md-content">
-    <h3>Modal Dialog</h3>
+    <h3>회원가입</h3>
     <div>
-      <p>This is a modal window. You can do the following things with
-        it:</p>
+    <form action='${pageContext.request.contextPath}/member/reg.do' method="post">
       <ul>
-        <li><strong>Read:</strong> modal windows will probably tell you
-          something important so don't forget to read what they say.</li>
-        <li><strong>Look:</strong> a modal window enjoys a certain kind
-          of attention; just look at it and appreciate its presence.</li>
-        <li><strong>Close:</strong> click on the button below to close
-          the modal.</li>
+        <li><strong>이메일:</strong> <input type='text' name='email'></li>
+        <li><strong>이름:</strong> <input type='text' name='name'></li>
+        <li><strong>비밀번호</strong> <input type='password' name='password'></li>
       </ul>
-      <button class="md-close">Close me!</button>
+      <button class="md-close">가입하기1</button>
+    </form>
     </div>
   </div>
 </div>

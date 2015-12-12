@@ -28,9 +28,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     		&& !request.getServletPath().startsWith("/member/reg")
         && loginUser == null) {
       response.sendRedirect(request.getContextPath() + "/main/first.do");
+      log.debug("여기서 멈춰라! servletpath=>" + request.getServletPath() );
       return false; // 다음으로 가는 것을 멈춰라!
     }
-    
+    log.debug("실행해라! servletpath=>" + request.getServletPath());
     return true; // 다음 인터셉터나 페이지 컨트롤러로 가라.
   }
 }

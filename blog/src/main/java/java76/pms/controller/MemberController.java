@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import net.coobird.thumbnailator.Thumbnails;
 @RequestMapping("/member/*")
 public class MemberController {
   public static final String SAVED_DIR = "/file";
+  public static final Logger log = Logger.getLogger(MemberController.class);
   @Autowired MemberDao memberDao;
 
   @RequestMapping("list")
@@ -48,53 +50,13 @@ public class MemberController {
 
   }
   
-  @RequestMapping("add")
-  public String add(
-      String name,
-      String email,
-      String tel,
-      String cid,
-      String password,
-      MultipartFile photofile,
-      HttpServletRequest request) throws Exception {
-
-    String newFileName = null;
+  @RequestMapping("reg")
+  public String register(Member member) throws Exception {
     
-    if (photofile.getSize() > 0) {
-      newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
-      ServletContext servletContext = request.getServletContext();
-      File attachfile = new File(
-          servletContext.getRealPath(SAVED_DIR) + "/" + newFileName);
-      photofile.transferTo(attachfile);
-      
-      makeThumbnailImage(
-        servletContext.getRealPath(SAVED_DIR) + "/" + newFileName, 
-        servletContext.getRealPath(SAVED_DIR) + "/s-" + newFileName + ".png");
-    }
-    
-    Member member = new Member();
-    member.setName(name);
-    member.setEmail(email);
-    member.setTel(tel);
-    member.setCid(cid);
-    member.setPassword(password);
-    member.setPhoto(newFileName);
-
+    log.debug("member.register()=> " + member);
     memberDao.insert(member);
 
-    return "redirect:list.do";
-
-  }
-  @RequestMapping("reg")
-  public String register(
-      String email,
-      HttpServletRequest request) 
-          throws Exception {
-
-    Member member = memberDao.selectOne(email);
-    request.setAttribute("member", member);
-
-    return "member/MemberReg";
+    return "redirect:../main/first.do";
   }
   
   
@@ -109,7 +71,7 @@ public class MemberController {
 
     return "member/MemberDetail";
   }
-
+/*
   @RequestMapping(value="update", method=RequestMethod.POST)
   public String post(
       String name,
@@ -153,7 +115,7 @@ public class MemberController {
 
     return "redirect:list.do";
   }
-  
+  */
   @RequestMapping("delete")
   public String delete(
       String email,

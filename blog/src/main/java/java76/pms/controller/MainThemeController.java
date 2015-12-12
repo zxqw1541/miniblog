@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +17,10 @@ import java76.pms.domain.Album;
 
 @Controller
 @RequestMapping("/main/*")
-public class mainThemeController { 
+public class MainThemeController { 
   
   public static final String SAVED_DIR = "/attachfile";
-  
+  public static final Logger log = Logger.getLogger(MainThemeController.class);
   @Autowired AlbumDao albumDao;
   @Autowired ServletContext servletContext;
   
