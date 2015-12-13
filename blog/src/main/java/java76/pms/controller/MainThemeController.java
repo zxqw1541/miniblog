@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java76.pms.dao.AlbumDao;
+import java76.pms.dao.MemberDao;
 import java76.pms.domain.Album;
+import java76.pms.domain.Member;
 
 @Controller
-@RequestMapping("/main/*")
+@RequestMapping("/album/*")
 public class MainThemeController { 
   
   public static final String SAVED_DIR = "/attachfile";
+  public static final int PERMISSION_ADMIN = 0;
+  
   public static final Logger log = Logger.getLogger(MainThemeController.class);
   @Autowired AlbumDao albumDao;
+  @Autowired MemberDao memberDao;
   @Autowired ServletContext servletContext;
   
   @RequestMapping("first")
@@ -30,7 +36,8 @@ public class MainThemeController {
       @RequestParam(defaultValue="10") int pageSize,
       @RequestParam(defaultValue="no") String keyword,
       @RequestParam(defaultValue="desc") String align,
-        HttpServletRequest request) throws Exception {
+        HttpServletRequest request,
+        HttpSession session) throws Exception {
     
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
@@ -39,6 +46,10 @@ public class MainThemeController {
     paramMap.put("align", align);
     
     List<Album> albums = albumDao.selectList(paramMap);
+
+    Member admin = memberDao.selectAdmin(PERMISSION_ADMIN);
+    
+    session.setAttribute("admin", admin); 
     
     request.setAttribute("albums", albums);
     

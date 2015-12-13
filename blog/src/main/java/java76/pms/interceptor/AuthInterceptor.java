@@ -23,11 +23,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     Member loginUser = (Member)request.getSession()
                                         .getAttribute("loginUser");
     
-    if (!request.getServletPath().startsWith("/main") 
+    if (!request.getServletPath().startsWith("/album/first") 
     		&& !request.getServletPath().startsWith("/auth")
     		&& !request.getServletPath().startsWith("/member/reg")
         && loginUser == null) {
-      response.sendRedirect(request.getContextPath() + "/main/first.do");
+      response.sendRedirect(request.getContextPath() + "/album/first.do");
       log.debug("여기서 멈춰라! servletpath=>" + request.getServletPath() );
       return false; // 다음으로 가는 것을 멈춰라!
     }

@@ -58,7 +58,19 @@ public class MemberController {
 
     return "redirect:../main/first.do";
   }
+ 
   
+  @RequestMapping("regAdmin")
+  public String registerAdmin(
+  		Member member,
+  		HttpServletRequest request) throws Exception {
+    
+    log.debug("member.register()=> " + member);
+    
+    memberDao.insertAdmin(member);
+
+    return "redirect:../main/first.do";
+  } 
   
   @RequestMapping("detail")
   public String detail(

@@ -17,6 +17,10 @@ public interface MemberDao {
   Member selectOne(String email);
 
   Member login(Map<String,Object> paramMap);
+
+	Member selectAdmin(int permissionAdmin);
+
+	void insertAdmin(Member member);
 }
 
 

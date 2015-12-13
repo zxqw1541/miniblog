@@ -37,49 +37,49 @@
 
 <div class='container'>
 <c:if test="${not empty album}">
-	<hr class='space'>
-	<h1 class='white'>${album.title}</h1>
-	<div class='rightButton'>
+  <hr class='space'>
+  <h1 class='white'>${album.title}</h1>
+  <div class='rightButton'>
     <button class="md-trigger" onclick="history.back()">뒤로</button>
     <button class="md-trigger">수정</button>
     <button class="md-trigger">삭제</button>
   </div>
-	
-	
-	<div class='span-24 maincontent'>
-		<!-- MAIN CONTENT STARTS HERE -->
-		<!-- MIDDLE CONTENT STARTS HERE -->
-		<!-- one blog post -->
-		<div class='blogPost'>
-			<div class='blogPhoto'>
-				<img src='../blog/pictures/${album.attachFile}'></a>
-			</div>
-			<div class='blogText'>
-			  <p>${album.comment}</p>
-			</div>
-			<hr>
-			<div class='blogText'>
-				<p>${album.site}</p>
-			</div>
-			<hr>
-			<div class='blogText'>
-				<p>'writer'로 맴버이름 값 넘겨주세요 ${writer}</p>
-			</div>
-			<hr>
-			<div class='blogText'>
+  
+  
+  <div class='span-24 maincontent'>
+    <!-- MAIN CONTENT STARTS HERE -->
+    <!-- MIDDLE CONTENT STARTS HERE -->
+    <!-- one blog post -->
+    <div class='blogPost'>
+      <div class='blogPhoto'>
+        <img src='../blog/pictures/${album.attachFile}'></a>
+      </div>
+      <div class='blogText'>
+        <p>${album.content}</p>
+      </div>
+      <hr>
+      <div class='blogText'>
+        <p>${album.site}</p>
+      </div>
+      <hr>
+      <div class='blogText'>
+        <p>'writer'로 맴버이름 값 넘겨주세요 ${writer}</p>
+      </div>
+      <hr>
+      <div class='blogText'>
         <p>${album.createdDate}</p>
       </div>
       <hr>
-		</div>
-	</div>
-	</c:if>
+    </div>
+  </div>
+  </c:if>
   <hr class='space'>
 
-	<c:if test="${empty album}">
-		<p>해당 번호의 게시물을 찾을 수 없습니다.</p>
-	</c:if>
+  <c:if test="${empty album}">
+    <p>해당 번호의 게시물을 찾을 수 없습니다.</p>
+  </c:if>
 
-	<jsp:include page="/Copyright.jsp" />
+  <jsp:include page="/Copyright.jsp" />
 </div>
 </body>
 </html>

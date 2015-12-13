@@ -8,8 +8,41 @@ public class Member implements Serializable {
   protected String name;
   protected String email;
   protected String password;
+  protected int	flag;
+  protected int mno;
+  protected String mfile;
   
-  public Member() {}
+  public int getFlag() {
+		return flag;
+	}
+	
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+	
+
+	public int getMno() {
+		return mno;
+	}
+	
+
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
+	
+
+	public String getMfile() {
+		return mfile;
+	}
+	
+
+	public void setMfile(String mfile) {
+		this.mfile = mfile;
+	}
+	
+
+	public Member() {}
   
   public Member(String name, String email) {
     this.email = email;
@@ -41,9 +74,10 @@ public class Member implements Serializable {
   }
 
   @Override
-  public String toString() {
-    return "Member [name=" + name + ", email=" + email + ", password=" + password + "]";
-  }
+	public String toString() {
+	return "Member [name=" + name + ", email=" + email + ", password=" + password + ", flag=" + flag + ", mno=" + mno
+	    + ", mfile=" + mfile + "]";
+	}
   
  
   

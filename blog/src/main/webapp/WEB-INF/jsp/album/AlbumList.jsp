@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>게시판-목록</title>
+<title>${admin.name}의 Blog</title>
 <!-- -->
 <link rel="stylesheet" type="text/css" href="../css/default.css" />
 <link rel="stylesheet" type="text/css" href="../css/component.css" />
@@ -33,7 +33,7 @@
 <body>
 	<jsp:include page="/Header.jsp" />
 
-	<h1>게시판</h1>
+	<h3>앨범보기</h3>
 	<div class="container">
 		<div class='span-24 slider'>
 			<div class='bevel'></div>
@@ -71,12 +71,12 @@
 			<div class='arrowUp'></div>
 		</div>
 		<hr class='space'>
-		<a href='add.do'>새 글</a>
+		<a href='add.do'>새 앨범</a>
 		<hr class='space'>
 		<c:forEach var="album" items="${albums}" varStatus="status">
 		  <c:if test='${status.count % 3 != 0}'>
 				<div class="span-8 smallSquare">
-					<a href='detail.do?no=${album.no}'><img src='../blog/pictures/${album.attachFile}' alt='3'></a>
+					<a href='detail.do?no=${album.no}'><img src='/attachfile/s-${album.attachFile}' alt='3'></a>
 					<div class='arrowUp'></div>
 					<div class='box'>
 						<h6>${album.title}</h6>
@@ -86,7 +86,7 @@
 			</c:if>
 			<c:if test='${status.count % 3 == 0}'>
 				<div class="span-8 last smallSquare">
-					<a href='detail.do?no=${album.no}'><img src='../blog/pictures/${album.attachFile}' alt='4'></a>
+					<a href='detail.do?no=${album.no}'><img src='/attachfile/s-${album.attachFile}' alt='4'></a>
 					<div class='arrowUp'></div>
 					<div class='box'>
 						<h6>${album.title}</h6>

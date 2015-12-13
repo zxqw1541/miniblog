@@ -6,9 +6,9 @@
 <mapper namespace="java76.pms.dao.AlbumDao">
 
   <resultMap type="album" id="albumMap">
-    <id 		column="ano" 		    property="no"/>
-    <result column="cre_dt" 		property="createdDate"/>
-    <result column="thumnail" 		  property="attachFile"/>
+    <id     column="ano"        property="no"/>
+    <result column="cre_dt"     property="createdDate"/>
+    <result column="thumbnail"      property="attachFile"/>
   </resultMap>
 
   <select id="selectList" resultMap="albumMap" parameterType="map">
@@ -17,13 +17,13 @@
       title,
       views,
       cre_dt,
-      thumnail
+      thumbnail 
     from album
     order by 
     <choose>
       <when test="keyword == 'title'">title </when>
       <when test="keyword == 'views'">views </when>
-      <otherwise>ano </otherwise>
+      <otherwise>cre_dt, cre_ti </otherwise>
     </choose>
     <choose>
       <when test="align == 'asc'">asc</when>
@@ -33,22 +33,22 @@
   </select>
   
   <insert id="insert" parameterType="album">
-    insert into album(title,comment,site,thumnail,mno,cre_dt) 
-    values(#{title},#{comment},#{site},#{attachFile},#{mno},now())
+    insert into album(ano,title,content,site,thumbnail,mno,cre_dt,cre_ti) 
+    values(#{no},#{title},#{content},#{site},#{attachFile},#{mno},now(), curtime())
   </insert>
   
   <delete id="delete" parameterType="map">
     delete from album 
-  	where ano=#{no} and mno = #{mno}
+    where ano=#{no} and mno = #{mno}
   </delete>
   
   <update id="update" parameterType="album">
     update album set 
       title=#{title},
-      comment=#{comment},
+      content=#{content},
       cre_dt=now(),
-  	  thumnail=#{attachFile},
-  	  site=#{site}
+      thumbnail=#{attachFile},
+      site=#{site}
     where ano=#{no} and mno = #{mno}
   </update>
   
@@ -58,9 +58,10 @@
       title,
       views,
       cre_dt,
-      thumnail,
-      comment,
-      site,
+      cre_ti
+      thumbnail,
+      content,
+      site, 
       mno
     from album
     where ano=#{no}
