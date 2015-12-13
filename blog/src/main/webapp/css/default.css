@@ -11,20 +11,23 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
+/*
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+*/
+/*
 body, html { font-size: 100%; padding: 0; margin: 0; }
-
+*/
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }
-
+/*
 body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	color: #000;
 	background: #fff;
 }
-
+*/
+/*
 a {
 	color: #000;
 	text-decoration: none;
@@ -34,6 +37,7 @@ a:hover,
 a:active {
 	color: #333;
 }
+*/
 
 /* Header Style */
 .main,
@@ -141,7 +145,7 @@ a:active {
 button {
 	border: none;
 	padding: 0.6em 1.2em;
-	background: #c0392b;
+	background: #a6b3c3
 	color: #fff;
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	font-size: 1em;
@@ -153,8 +157,12 @@ button {
 	border-radius: 2px;
 }
 
+/*
+c03926 / 192 57 38
+a5281b / 165 40 27
+*/
 button:hover {
-	background: #A5281B;
+	background: #81a2b7;
 }
 
 @media screen and (max-width: 46.0625em) {

@@ -9,10 +9,8 @@
   <a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
   </c:if>
   <c:if test="${empty loginUser}">
-    <a href="${pageContext.request.contextPath}/auth/login.do">로그인</a>
       <button class="md-trigger" data-modal="modal-1">로그인</button>
       <button class="md-trigger" data-modal="modal-10">회원가입</button>
-    <a href="${pageContext.request.contextPath}/member/MemberReg.jsp">회원가입</a>
   </c:if>
 </div>
 <!-- /container -->
@@ -23,11 +21,16 @@
     <div>
       
       <form action='../auth/login.do' method="post">
-      <ul>
-        <li><strong>이메일</strong> <input type='text' name='email' value="${cookie.email.value}"></li>
-        <li><strong>비밀번호</strong> <input type='password' name='password'></li>
-      </ul>
+          이메일
+      <hr class='space'>
+      <input type='text' name='email' value="${cookie.email.value}">
+      <hr class='space'>
+          비밀번호
+      <hr class='space'>
+      <input type='password' name='password'>
+      <hr class='space'>
       <button class="md-close">로그인</button>
+      <hr class='space'>
       <input type="checkbox" name="saveEmail" ${(empty cookie.email)?"":"checked"}> 이메일 저장
       </form>
     </div>
@@ -39,12 +42,13 @@
     <h3>회원가입</h3>
     <div>
     <form action='${pageContext.request.contextPath}/member/reg.do' method="post">
-      <ul>
-        <li><strong>이메일:</strong> <input type='text' name='email'></li>
-        <li><strong>이름:</strong> <input type='text' name='name'></li>
-        <li><strong>비밀번호</strong> <input type='password' name='password'></li>
-      </ul>
-      <button class="md-close">가입하기1</button>
+      <hr class='space'>이메일
+      <hr class='space'><input type='text' name='email'>
+      <hr class='space'>이름
+      <hr class='space'><input type='text' name='name'>
+      <hr class='space'>비밀번호
+      <hr class='space'><input type='password' name='password'>
+      <hr class='space'><button class="md-close">가입하기1</button>
     </form>
     </div>
   </div>
