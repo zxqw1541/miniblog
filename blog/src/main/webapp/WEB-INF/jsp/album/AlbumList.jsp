@@ -71,54 +71,33 @@
 			<div class='arrowUp'></div>
 		</div>
 		<hr class='space'>
-    <div class="span-8 smallSquare">
-      <img src='../blog/pictures/3.jpg' alt='3'>
-      <div class='arrowUp'></div>
-      <div class='box'>
-        <h6>And another box</h6>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-          do eiusmod tempor.</p>
-      </div>
-    </div>
-    <div class="span-8 smallSquare">
-      <img src='../blog/pictures/4.jpg' alt='4'>
-      <div class='arrowUp'></div>
-      <div class='box'>
-        <h6>And another box</h6>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-      </div>
-    </div>
-    <div class="span-8 last smallSquare">
-      <img src='../blog/pictures/2.jpg' alt='4'>
-      <div class='arrowUp'></div>
-      <div class='box'>
-        <h6>And another box</h6>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-          do eiusmod tempor.</p>
-      </div>
-    </div>
-	</div>
-	<a href='add.do'>새 글</a>
-	<br>
-
-
-	<table border='1'>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>조회수</th>
-			<th>등록일</th>
-		</tr>
-
-		<c:forEach var="album" items="${albums}">
-			<tr>
-				<td>${album.no}</td>
-				<td><a href='detail.do?no=${album.no}'>${album.title}</a></td>
-				<td>${album.views}</td>
-				<td>${album.createdDate}</td>
-			</tr>
+		<a href='add.do'>새 글</a>
+		<hr class='space'>
+		<c:forEach var="album" items="${albums}" varStatus="status">
+		  <c:if test='${status.count % 3 != 0}'>
+				<div class="span-8 smallSquare">
+					<a href='detail.do?no=${album.no}'><img src='../blog/pictures/${album.attachFile}' alt='3'></a>
+					<div class='arrowUp'></div>
+					<div class='box'>
+						<h6>${album.title}</h6>
+						<p>${status.count}</p>
+					</div>
+				</div>
+			</c:if>
+			<c:if test='${status.count % 3 == 0}'>
+				<div class="span-8 last smallSquare">
+					<a href='detail.do?no=${album.no}'><img src='../blog/pictures/${album.attachFile}' alt='4'></a>
+					<div class='arrowUp'></div>
+					<div class='box'>
+						<h6>${album.title}</h6>
+            <p>${status.count}</p>
+					</div>
+				</div>
+				<hr class='space'>
+			</c:if>
 		</c:forEach>
-	</table>
+		
+		<hr class='space'>
 
 	<jsp:include page="/Copyright.jsp" />
 
