@@ -598,3 +598,8 @@ ul#items .arrowUp {top: 93px;}
 .themeHolder .color.darkerBlue {background: #283b7a;}
 .themeHolder .color.pink {background: #beb3ae;}
 .themeHolder .color.yellow {background: #eadbb8;}
+
+.rightButton {
+    float: right;
+    margin: 0 10px 0 20px;
+}

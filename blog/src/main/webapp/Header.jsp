@@ -6,7 +6,9 @@
 프로젝트 관리 시스템 -
   <c:if test="${not empty loginUser}">
   ${loginUser.name}
-  <a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
+  <form action="${pageContext.request.contextPath}/auth/logout.do" style="display:inline">
+    <button class="md-trigger">로그아웃</button>
+  </form>
   </c:if>
   <c:if test="${empty loginUser}">
       <button class="md-trigger" data-modal="modal-1">로그인</button>

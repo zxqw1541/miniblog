@@ -7,77 +7,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='UTF-8'>
-  <title>게시판-상세정보</title>
-  <link rel="stylesheet" type="text/css" href="../css/common.css">
+<meta charset='UTF-8'>
+<title>게시판-상세정보</title>
+<!-- -->
+<link rel="stylesheet" type="text/css" href="../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../css/component.css" />
+
+<!--  -->
+<link rel="stylesheet" href="../css/screen.css" type="text/css"
+  media="screen, projection">
+<link rel="stylesheet" href="../css/stylesheet.css" type="text/css"
+  media="screen, projection">
+<script src="../js/modernizr.custom.js"></script>
+<!-- jQuery lib -->
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+  type="text/javascript"></script>
+<!-- nivo slider -->
+<script type="text/javascript" src="../js/jquery.nivo.slider.js"></script>
+<link rel="stylesheet" href="../css/nivo.css" type="text/css"
+  media="screen, projection">
+<!-- jQuery carousel -->
+<script type="text/javascript" src="../js/easypaginate.js"></script>
+<!-- custom tooltip -->
+<script type="text/javascript" src="../js/tooltip.js"></script>
 </head>
 <body>
+<jsp:include page="/Header.jsp" />
 
-<jsp:include page="/Header.jsp"/>
-
-<h1>게시물 정보(with JSP + EL + JSTL)</h1>
-
+<div class='container'>
 <c:if test="${not empty album}">
-<form id='form1' action='update.do' method='post'
-      enctype="multipart/form-data">
-<table border='1'>
-<tr>
-  <th>번호</th>
-  <td><input type='text' name='no' value='${album.no}' readonly></td>
-</tr>
-<tr>
-  <th>제목</th>
-  <td><input type='text' name='title' value='${album.title}'></td>
-</tr>
-<tr>
-  <th>내용</th>
-  <td><textarea rows='10' name='comment' 
-      cols='60'>${album.comment}</textarea></td>
-</tr>
-<tr>
-  <th>조회수</th>
-  <td>${album.views}</td>
-</tr>
-<tr>
-  <th>등록일</th>
-  <td>${album.createdDate}</td>
-</tr>
-<tr>
-  <th>첨부파일</th>
-  <td><a href='../attachfile/${album.attachFile}'>${album.attachFile}</a><br>
-      <input type='file' name='file'>
-      <input type='hidden' name='attachFile' value='${album.attachFile}'></td>
-</tr>
-<tr>
-  <th>암호</th>
-  <td><input id='inputPassword' type='password' name='password'></td>
-</tr>
-</table>
-<p>
-<button name='update' type='submit' class='button1'>변경</button>
-<a id='aDelete' href='delete.do?no=${album.no}&mno=${album.mno}' class='button2' onclick='deletealbum()'>삭제</a>
-</p>
-</form>
-</c:if>
-
-<c:if test="${empty album}">
-<p>해당 번호의 게시물을 찾을 수 없습니다.</p>
-</c:if>
-
-<jsp:include page="/Copyright.jsp"/>
-<script>
-function deletealbum() {
-	// 암호 텍스트 상자에 입력된 내용을 가져온다.
-	var password = document.getElementById('inputPassword').value;
+	<hr class='space'>
+	<h1 class='white'>${album.title}</h1>
+	<div class='rightButton'>
+    <button class="md-trigger" onclick="history.back()">뒤로</button>
+    <button class="md-trigger">수정</button>
+    <button class="md-trigger">삭제</button>
+  </div>
 	
-	// a 태그의 href 값을 가져와서 "&password=암호" 문자열을 붙인다.
-	var href = document.getElementById('aDelete').href 
-	           + "&password=" + password;
 	
-	// a 태그의 href 값을 암호 파라미터가 붙은 값으로 변경한다. 
-	document.getElementById('aDelete').href = href;
-}
-</script>
+	<div class='span-24 maincontent'>
+		<!-- MAIN CONTENT STARTS HERE -->
+		<!-- MIDDLE CONTENT STARTS HERE -->
+		<!-- one blog post -->
+		<div class='blogPost'>
+			<div class='blogPhoto'>
+				<img src='../blog/pictures/${album.attachFile}'></a>
+			</div>
+			<div class='blogText'>
+			  <p>${album.comment}</p>
+			</div>
+			<hr>
+			<div class='blogText'>
+				<p>${album.site}</p>
+			</div>
+			<hr>
+			<div class='blogText'>
+				<p>'writer'로 맴버이름 값 넘겨주세요 ${writer}</p>
+			</div>
+			<hr>
+			<div class='blogText'>
+        <p>${album.createdDate}</p>
+      </div>
+      <hr>
+		</div>
+	</div>
+	</c:if>
+  <hr class='space'>
+
+	<c:if test="${empty album}">
+		<p>해당 번호의 게시물을 찾을 수 없습니다.</p>
+	</c:if>
+
+	<jsp:include page="/Copyright.jsp" />
+</div>
 </body>
 </html>
-    
